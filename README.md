@@ -245,7 +245,7 @@ redact --init-config config.json
 
 ### Custom Patterns
 
-Add your own patterns via config. Each custom pattern maps a name to a regex:
+Add your own detection patterns via config. Each custom pattern maps a name to a regex:
 
 ```json
 {
@@ -257,7 +257,57 @@ Add your own patterns via config. Each custom pattern maps a name to a regex:
 }
 ```
 
-Custom patterns use priority 50 (same as passwords) by default.
+**Pattern syntax:**
+- Use standard Python regex syntax
+- The entire match is replaced with `REDACTED_{NAME}_{hash}`
+- If your regex has a capture group `(...)`, only the captured text is replaced
+- Patterns are case-insensitive by default
+
+**Examples:**
+
+```json
+{
+  "custom_patterns": {
+    "COMPANY_ID": "COMPANY-[A-Z]{2}[0-9]{6}",
+    "DATABASE_PASSWORD": "db_pass=([\\S]+)",
+    "INTERNAL_SECRET": "SECRET-[a-f0-9]{40}"
+  }
+}
+```
+
+**Custom pattern priority:**
+
+Custom patterns use priority 50 (same as passwords). To change priority, add a `priority` key:
+
+```json
+{
+  "custom_patterns": {
+    "CRITICAL_SECRET": {
+      "regex": "CRITICAL-[A-Z0-9]{32}",
+      "priority": 95
+    }
+  }
+}
+```
+
+**Using with CLI:**
+
+```bash
+# Use config with custom patterns
+redact --config my-rules.json app.log
+
+# Or put config in ./config.json (auto-loaded)
+redact app.log
+```
+
+**Using without config file:**
+
+```bash
+# Generate config with custom patterns
+redact --init-config config.json
+# Edit config.json to add your patterns
+redact --config config.json app.log
+```
 
 ### Config Resolution
 

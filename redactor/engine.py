@@ -115,9 +115,17 @@ class Redactor:
 
         # Add custom patterns
         if custom_patterns:
-            for name, regex in custom_patterns.items():
+            for name, value in custom_patterns.items():
+                if isinstance(value, dict):
+                    # Dict format: {"regex": "...", "priority": 95}
+                    regex = value["regex"]
+                    priority = value.get("priority", 65)
+                else:
+                    # Simple format: "regex..."
+                    regex = value
+                    priority = 65
                 self.patterns.append(Pattern(name=name, regex=regex, description=f"Custom pattern: {name}"))
-                PRIORITY[name] = 65  # Custom patterns get reasonable priority
+                PRIORITY[name] = priority
 
         # Separate high-entropy pattern for special handling
         self._high_entropy_pattern = None

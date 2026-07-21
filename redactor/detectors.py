@@ -191,6 +191,38 @@ CREDIT_CARD = Pattern(
     description="Credit card number (Visa/Mastercard/Amex/Discover)",
 )
 
+# ── UK PII ────────────────────────────────────────────────────────────────────
+
+UK_NINO = Pattern(
+    name="UK_NINO",
+    regex=r"(?<![A-Za-z0-9])(?:[A-CEGHJ-PR-TW-Z]{2})\s?[0-9]{2}\s?[0-9]{2}\s?[0-9]{2}\s?[A-D](?![A-Za-z0-9])",
+    description="UK National Insurance Number (e.g., QQ 12 34 56 C)",
+)
+
+UK_NHS = Pattern(
+    name="UK_NHS",
+    regex=r"(?<!\d)[0-9]{3}\s?[0-9]{3}\s?[0-9]{4}(?!\d)",
+    description="UK NHS Number (10 digits, e.g., 123 456 7890)",
+)
+
+UK_PHONE = Pattern(
+    name="UK_PHONE",
+    regex=r"(?<!\d)(?:\+?44[-.\s]?\(?0?\)?[-.\s]?)?(?:\(?[0-9]{4}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{3}|\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}|\(?[0-9]{2}\)?[-.\s]?[0-9]{4}[-.\s]?[0-9]{4})(?!\d)",
+    description="UK phone number (e.g., +44 20 7946 0958, 020 7946 0958)",
+)
+
+UK_POSTCODE = Pattern(
+    name="UK_POSTCODE",
+    regex=r"(?<![A-Za-z0-9])[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}(?![A-Za-z0-9])",
+    description="UK postcode (e.g., SW1A 1AA, M1 1AA, B2 4QW)",
+)
+
+UK_SORT_CODE = Pattern(
+    name="UK_SORT_CODE",
+    regex=r"(?<!\d)[0-9]{2}[-\s]?[0-9]{2}[-\s]?[0-9]{2}(?!\d)",
+    description="UK bank sort code (e.g., 12-34-56, 12 34 56)",
+)
+
 IPV4_ADDRESS = Pattern(
     name="IP_ADDRESS",
     regex=r"(?<!\d)(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?!\d)",
@@ -292,6 +324,11 @@ PATTERN_GROUPS = {
         SSN,
         PHONE_NUMBER,
         CREDIT_CARD,
+        UK_NINO,
+        UK_NHS,
+        UK_PHONE,
+        UK_POSTCODE,
+        UK_SORT_CODE,
     ],
     "private_keys": [
         RSA_PRIVATE_KEY,

@@ -1,0 +1,19 @@
+2025-07-21T10:15:32Z INFO  Application started on host app.prod.internal.corp
+2025-07-21T10:15:33Z DEBUG Connecting to database db.staging.private.company:5432
+2025-07-21T10:15:34Z INFO  Server IPs: primary=192.168.1.100 secondary=10.0.0.50
+2025-07-21T10:15:35Z DEBUG Redis cache at 172.16.0.100:6379 responded
+2025-07-21T10:15:36Z INFO  IPv6 address assigned: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+2025-07-21T10:15:37Z DEBUG Load balancer health check: 10.0.1.25, 10.0.1.26, 10.0.1.27
+2025-07-21T10:15:38Z INFO  Docker network: container redis.cache.local on bridge
+2025-07-21T10:15:39Z WARN  Firewall blocked external IP 8.8.8.8 from dns.prod.intranet
+2025-07-21T10:15:40Z INFO  Kubernetes node: node-01.k8s.internal.lab ready
+2025-07-21T10:15:41Z DEBUG Service mesh: api-gateway.dev.corp connected to auth.prod.private
+2025-07-21T10:15:42Z INFO  Public endpoint: https://api.example.com should not redact
+2025-07-21T10:15:43Z DEBUG Mixed: server-10.0.0.1.prod.internal.corp resolved
+2025-07-21T10:15:44Z INFO  Monitoring: prometheus.monitoring.local scraping 192.168.0.5
+2025-07-21T10:15:45Z WARN  Deprecated host: db-legacy.corp.local still in use
+2025-07-21T10:15:46Z INFO  VPN gateway: 10.255.0.1 tunnel to office.private.company
+2025-07-21T10:15:47Z DEBUG DNS server: 10.0.0.53 resolving mail.internal.lab
+2025-07-21T10:15:48Z INFO  CDN origin: static.cdn.internal.corp serving assets
+2025-07-21T10:15:48Z INFO  host: myfoundation.police.net serving pizza
+2025-07-21T10:15:48Z INFO  DNS: newtest.police.uk mail machine

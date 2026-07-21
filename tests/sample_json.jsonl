@@ -1,0 +1,10 @@
+{"timestamp": "2025-07-21T10:15:32Z", "level": "INFO", "message": "Application started", "config": {"db_url": "postgres://admin:s3cretP@ss123@db.example.com:5432/myapp", "redis_url": "redis://default:r3d1s_s3cret@cache.example.com:6379/0"}}
+{"timestamp": "2025-07-21T10:15:33Z", "level": "INFO", "message": "AWS credentials loaded", "access_key": "AKIAIOSFODNN7EXAMPLE", "secret_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"}
+{"timestamp": "2025-07-21T10:15:34Z", "level": "DEBUG", "message": "GitHub token validated", "token": "ghp_ABCDEFabcdef1234567890abcdefghijklmnop"}
+{"timestamp": "2025-07-21T10:15:35Z", "level": "INFO", "message": "User login", "user": "john.doe@example.com", "password": "Sup3rS3cret!"}
+{"timestamp": "2025-07-21T10:15:36Z", "level": "INFO", "message": "Stripe key confirmed", "api_key": "sk_test_FAKE4eC39HqLyjWDarjtT1zdp7dc"}
+{"timestamp": "2025-07-21T10:15:37Z", "level": "WARN", "message": "Customer PII accessed", "ssn": "123-45-6789", "phone": "555-867-5309", "email": "alice@company.org"}
+{"timestamp": "2025-07-21T10:15:38Z", "level": "INFO", "message": "JWT issued", "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNryP4J3jVmNHl0w5N_XgL0n3I9PlFUP0THsR8U"}
+{"timestamp": "2025-07-21T10:15:39Z", "level": "INFO", "message": "Slack notification sent", "slack_token": "xoxb-FAKE1234567890-1234567890123-abcDEFghiJKLmnoPQRstuv"}
+{"timestamp": "2025-07-21T10:15:40Z", "level": "DEBUG", "message": "MongoDB connected", "mongo_uri": "mongodb+srv://admin:m0ng0_p@ss@cluster0.abc123.mongodb.net/prod"}
+{"timestamp": "2025-07-21T10:15:41Z", "level": "INFO", "message": "Payment processed", "card": "4111111111111111", "stripe_key": "sk_test_FAKE4eC39HqLyjWDarjtT1zdp7dc"}

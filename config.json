@@ -1,0 +1,15 @@
+{
+  "salt": "CHANGE-ME-TO-A-UNIQUE-SALT",
+  "categories": {
+    "api_keys": true,
+    "tokens": true,
+    "passwords": true,
+    "connection_strings": true,
+    "pii": true,
+    "private_keys": true,
+    "network": false,
+    "high_entropy": true
+  },
+  "high_entropy_threshold": 4.5,
+  "custom_patterns": {}
+}

@@ -18,8 +18,12 @@ Same salt + same secret = same redacted output. Works in air-gapped environments
 ## Installation
 
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 cd log-redactor
 pip install -e .
+# deactivate when finished
+# deactivate
 
 # Or run directly without installing
 python3 -m redactor <logfile>

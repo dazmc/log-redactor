@@ -45,6 +45,13 @@ PRIORITY = {
     "CREDIT_CARD": 80,
     # SSN
     "SSN": 75,
+    # Infrastructure & Cloud Resource IDs
+    "AWS_ARN": 70,
+    "ECR_IMAGE": 70,
+    "GCR_IMAGE": 70,
+    "ACR_IMAGE": 70,
+    "RDS_ENDPOINT": 70,
+    "ELASTICACHE_ENDPOINT": 70,
     # Generic API keys (more specific than PASSWORD)
     "GENERIC_API_KEY": 60,
     "HEX_SECRET": 60,
@@ -52,6 +59,10 @@ PRIORITY = {
     # Passwords and secrets in key=value
     "PASSWORD": 50,
     "QUOTED_PASSWORD": 50,
+    # Infrastructure identifiers
+    "K8S_SERVICE_DNS": 45,
+    "AWS_ACCOUNT_ID": 42,
+    "MAC_ADDRESS": 40,
     # PII (lower priority - can match inside other patterns)
     "EMAIL": 40,
     "PHONE": 35,
@@ -108,7 +119,7 @@ class Redactor:
             categories = {
                 "api_keys": True, "tokens": True, "passwords": True,
                 "connection_strings": True, "pii": True, "private_keys": True,
-                "network": False, "high_entropy": True,
+                "network": False, "infrastructure": False, "high_entropy": True,
             }
 
         self.patterns: List[Pattern] = get_patterns_for_categories(categories)

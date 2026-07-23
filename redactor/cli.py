@@ -87,9 +87,11 @@ examples:
 
     # Category toggles
     cat_group = parser.add_argument_group("category toggles")
-    for category in PATTERN_GROUPS:
-        # Enable flag (network is disabled by default, others enabled)
-        if category == "network":
+    for category in sorted(PATTERN_GROUPS.keys()):
+        # Special handling for categories disabled by default
+        disabled_by_default = category in ["network", "infrastructure"]
+        
+        if disabled_by_default:
             enable_flag = f"--{category.replace('_', '-')}"
             cat_group.add_argument(
                 enable_flag,
@@ -121,7 +123,8 @@ def cmd_list_patterns():
     """Print all built-in detection patterns."""
     print("Built-in Detection Patterns")
     print("=" * 60)
-    for category, patterns in PATTERN_GROUPS.items():
+    for category in sorted(PATTERN_GROUPS.keys()):
+        patterns = PATTERN_GROUPS[category]
         print(f"\n  [{category}]")
         for p in patterns:
             print(f"    {p.name:<25} {p.description}")
@@ -162,6 +165,7 @@ def cmd_init_config(path: str):
             "pii": True,
             "private_keys": True,
             "network": False,
+            "infrastructure": False,
             "high_entropy": True,
         },
         "high_entropy_threshold": 4.5,

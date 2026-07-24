@@ -251,22 +251,19 @@ AWS_ARN = Pattern(
 
 ECR_IMAGE = Pattern(
     name="ECR_IMAGE",
-    regex=r"\b\d{12}\.dkr\.ecr\.[a-z0-9-]+\.amazonaws\.com\/[^
-\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
+    regex=r"\b\d{12}\.dkr\.ecr\.[a-z0-9-]+\.amazonaws\.com\/[^\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
     description="Amazon ECR image reference",
 )
 
 GCR_IMAGE = Pattern(
     name="GCR_IMAGE",
-    regex=r"\b(?:gcr\.io|[a-z0-9-]+\.gcr\.io)\/[^
-\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
+    regex=r"\b(?:gcr\.io|[a-z0-9-]+\.gcr\.io)\/[^\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
     description="Google Container Registry image reference",
 )
 
 ACR_IMAGE = Pattern(
     name="ACR_IMAGE",
-    regex=r"\b[a-z0-9]+\.azurecr\.io\/[^
-\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
+    regex=r"\b[a-z0-9]+\.azurecr\.io\/[^\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
     description="Azure Container Registry image reference",
 )
 

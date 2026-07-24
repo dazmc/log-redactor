@@ -241,6 +241,65 @@ HOSTNAME = Pattern(
     description="Internal hostname (e.g., server.internal.corp, db.staging.company, host.office.uk)",
 )
 
+# ── Infrastructure & Cloud Resource Identifiers ──────────────────────────────
+
+AWS_ARN = Pattern(
+    name="AWS_ARN",
+    regex=r"\barn:aws:[a-z0-9-]+:[a-z0-9-]*:\d{12}:[^\s,']+\b",
+    description="AWS ARN (resource identifier)",
+)
+
+ECR_IMAGE = Pattern(
+    name="ECR_IMAGE",
+    regex=r"\b\d{12}\.dkr\.ecr\.[a-z0-9-]+\.amazonaws\.com\/[^
+\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
+    description="Amazon ECR image reference",
+)
+
+GCR_IMAGE = Pattern(
+    name="GCR_IMAGE",
+    regex=r"\b(?:gcr\.io|[a-z0-9-]+\.gcr\.io)\/[^
+\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
+    description="Google Container Registry image reference",
+)
+
+ACR_IMAGE = Pattern(
+    name="ACR_IMAGE",
+    regex=r"\b[a-z0-9]+\.azurecr\.io\/[^
+\s:@]+(?::[^\s@]+|@[A-Za-z0-9:._-]+)?\b",
+    description="Azure Container Registry image reference",
+)
+
+RDS_ENDPOINT = Pattern(
+    name="RDS_ENDPOINT",
+    regex=r"\b[a-z0-9-]+\.rds\.amazonaws\.com\b",
+    description="RDS endpoint hostname",
+)
+
+ELASTICACHE_ENDPOINT = Pattern(
+    name="ELASTICACHE_ENDPOINT",
+    regex=r"\b[a-z0-9-]+\.cache\.amazonaws\.com\b",
+    description="ElastiCache endpoint hostname",
+)
+
+K8S_SERVICE_DNS = Pattern(
+    name="K8S_SERVICE_DNS",
+    regex=r"\b[a-z0-9][a-z0-9-]*\.[a-z0-9][a-z0-9-]*\.svc(?:\.cluster\.local)?\b",
+    description="Kubernetes service DNS name",
+)
+
+AWS_ACCOUNT_ID = Pattern(
+    name="AWS_ACCOUNT_ID",
+    regex=r"\b\d{12}\b",
+    description="AWS 12-digit account ID",
+)
+
+MAC_ADDRESS = Pattern(
+    name="MAC_ADDRESS",
+    regex=r"\b(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}\b",
+    description="MAC address (e.g., 00:1A:2B:3C:4D:5E)",
+)
+
 # ── Cryptographic Keys ───────────────────────────────────────────────────────
 
 RSA_PRIVATE_KEY = Pattern(
@@ -338,6 +397,17 @@ PATTERN_GROUPS = {
         IPV4_ADDRESS,
         IPV6_ADDRESS,
         HOSTNAME,
+    ],
+    "infrastructure": [
+        AWS_ARN,
+        ECR_IMAGE,
+        GCR_IMAGE,
+        ACR_IMAGE,
+        RDS_ENDPOINT,
+        ELASTICACHE_ENDPOINT,
+        K8S_SERVICE_DNS,
+        AWS_ACCOUNT_ID,
+        MAC_ADDRESS,
     ],
     "high_entropy": [
         HIGH_ENTROPY,

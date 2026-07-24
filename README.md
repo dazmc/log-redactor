@@ -80,6 +80,7 @@ redact [options] [input] [output]
 | `--pii` / `--no-pii` | Emails, SSNs, phone numbers, credit cards |
 | `--private-keys` / `--no-private-keys` | PEM-encoded private keys |
 | `--network` | IP addresses and internal hostnames (disabled by default) |
+| `--infrastructure` | Infrastructure/cloud resource identifiers (ARNs, container images, RDS/ElastiCache, K8s service DNS, account IDs) (disabled by default) |
 | `--high-entropy` / `--no-high-entropy` | Catch-all for unknown secrets |
 
 ## Examples
@@ -187,6 +188,30 @@ $ redact --network app.log
 2025-07-21T10:15:33Z INFO  Server REDACTED_IP_ADDRESS_4a9ab4fa connected to REDACTED_HOSTNAME_5de7a41b
 2025-07-21T10:15:34Z INFO  IPv6: REDACTED_IPV6_ADDRESS_72b1a053
 2025-07-21T10:15:35Z INFO  Public: www.example.com not matched
+```
+
+### Infrastructure Redaction
+
+```bash
+$ redact --infrastructure app.log
+```
+
+**Input:**
+```
+2026-07-24T11:00:00Z INFO  Deploying image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/myrepo:sha-abcdef
+2026-07-24T11:00:01Z INFO  Using role arn:aws:iam::123456789012:role/DeployRole to access resources
+2026-07-24T11:00:02Z INFO  RDS endpoint: mydb-prod.rds.amazonaws.com connected from 10.0.1.5
+2026-07-24T11:00:03Z INFO  Kubernetes service: web.default.svc.cluster.local
+2026-07-24T11:00:04Z INFO  Node MAC: 00:1A:2B:3C:4D:5E
+```
+
+**Output:**
+```
+2026-07-24T11:00:00Z INFO  Deploying image: REDACTED_ECR_IMAGE_bf5ea1aa
+2026-07-24T11:00:01Z INFO  Using role REDACTED_AWS_ARN_71aaee0b to access resources
+2026-07-24T11:00:02Z INFO  RDS endpoint: REDACTED_RDS_ENDPOINT_3c9d7a1f connected from REDACTED_IP_ADDRESS_6e2c0121
+2026-07-24T11:00:03Z INFO  Kubernetes service: REDACTED_K8S_SERVICE_DNS_d4b2f0c8
+2026-07-24T11:00:04Z INFO  Node MAC: REDACTED_MAC_ADDRESS_b8e23656
 ```
 
 ### List Patterns
@@ -370,6 +395,7 @@ When patterns overlap (e.g., a password that's also a high-entropy string), the 
 | **PII** | Emails, US SSNs, phone numbers, credit cards (Visa/Mastercard/Amex/Discover) |
 | **Private Keys** | RSA/EC/DSA PEM blocks, PGP private keys |
 | **Network** | IPv4, IPv6, internal hostnames |
+| **Infrastructure** | AWS ARNs, ECR/GCR/ACR image refs, RDS/ElastiCache endpoints, Kubernetes service DNS, AWS account IDs, MAC addresses |
 | **High Entropy** | Catch-all for unknown secrets (configurable threshold) |
 
 ## Testing
